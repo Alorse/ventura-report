@@ -24,11 +24,11 @@ estilo Ventura", "team-system report", "make this on-brand for Ventura",
 
 ## Output location
 
-Always generate reports under `/Users/alorse/Projects/vtt/reports`. Write both
-the authoring file and the bundled artifact there (create the directory if it
-does not exist: `mkdir -p /Users/alorse/Projects/vtt/reports`). Use a
-descriptive, kebab-case filename, e.g.
-`/Users/alorse/Projects/vtt/reports/q2-2026-summary.bundled.html`.
+Always generate reports under a `reports/` directory in your working directory
+(or another location the user specifies). Write both the authoring file and the
+bundled artifact there (create the directory if it does not exist:
+`mkdir -p reports`). Use a descriptive, kebab-case filename, e.g.
+`reports/q2-2026-summary.bundled.html`.
 
 ## Output: always a single self-contained file
 
@@ -71,12 +71,13 @@ by design. Never ship the folder-with-`assets/` version to a single-file host.
 4. **Footer:** set `{{FOOTER_TEXT}}` (e.g. a confidentiality / source line).
 5. **Bundle into one file (default, required for single-file hosts):**
    ```bash
-   mkdir -p /Users/alorse/Projects/vtt/reports
-   node /Users/alorse/.claude/skills/ventura-report/build.js \
-     /Users/alorse/Projects/vtt/reports/report.html \
-     /Users/alorse/Projects/vtt/reports/report.bundled.html
+   mkdir -p reports
+   node "$SKILL_DIR/build.js" \
+     reports/report.html \
+     reports/report.bundled.html
    ```
-   This yields one portable `.html` with inline CSS + base64 logo and no local
+   (`$SKILL_DIR` is this skill's own folder — the directory containing this
+   `SKILL.md` and `build.js`.) This yields one portable `.html` with inline CSS + base64 logo and no local
    references — the only remote asset is the hero photo. (Editing during
    authoring is easier against the folder version with `assets/`, but the
    shipped artifact is always the bundled file.)
