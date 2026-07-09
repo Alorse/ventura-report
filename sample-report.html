@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Q2 Trip Performance Review — Ventura Travel</title>
+  <meta name="description" content="A look at booking momentum, traveler satisfaction, and the operational gaps to close before peak season across the Latin America brand portfolio.">
+
+  <!-- Favicon: Ventura mark (teal + terracotta), inline so the report is portable -->
+  <link rel="icon" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"%3E%3Crect width="64" height="64" rx="12" fill="%230E3A4E"/%3E%3Cpath d="M14 18h10l8 24 8-24h10L37 50H27L14 18z" fill="%23fff"/%3E%3Cpath d="M42 18h8l-8 20h-8l8-20z" fill="%23C97B5A"/%3E%3C/svg%3E'>
+
+  <!--
+    Fonts: matches the live team-system page, which loads NO webfont (display
+    falls back to Georgia, body to the system sans). We do the same so titles
+    look identical to the reference. The CSS stacks degrade gracefully.
+  -->
+
+  <link rel="stylesheet" href="assets/ventura-report.css">
+</head>
+<body>
+
+  <!-- ========================= TOP NAV ========================= -->
+  <header class="topbar">
+    <div class="nav">
+      <div class="brand">
+        <img class="logo-img" src="assets/ventura-logo.png" alt="Ventura Travel">
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span class="brand-system">Q2 Report</span>
+      </div>
+      <nav class="navlinks" aria-label="Report sections">
+        <a href="#overview">Overview</a>
+        <a href="#detail">Brand breakdown</a>
+        <a href="#next">Next steps</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========================= COVER (full-bleed hero) ========================= -->
+  <header class="cover">
+    <div class="cover-inner">
+      <img class="cover-logo" src="assets/ventura-logo.png" alt="Ventura Travel">
+      <p class="eyebrow">QUARTERLY BUSINESS REPORT</p>
+      <h1>Q2 Trip Performance Review</h1>
+      <p class="subtitle">A look at booking momentum, traveler satisfaction, and the operational gaps to close before peak season across the Latin America brand portfolio.</p>
+
+      <div class="cover-meta">
+        <div class="meta-item">
+          <span class="meta-label">Date</span>
+          <span class="meta-value">5 June 2026</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Prepared by</span>
+          <span class="meta-value">Finn Ledger</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Audience</span>
+          <span class="meta-value">Brand leads & operations</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <article class="report">
+
+    <!-- ========================= BODY ========================= -->
+    <!-- Replace everything below with the report content, reusing the
+         component patterns shown here.  -->
+
+    <p class="kicker">Overview</p>
+    <h2 id="overview">Where we stand</h2>
+    <p class="lead">Bookings recovered faster than forecast, but margin pressure on long-haul itineraries needs attention.</p>
+    <p>Volume grew across all four brands, led by tailor-made South America trips. The numbers below summarize the quarter against plan.</p>
+
+    <!-- Headline metrics -->
+    <div class="metric-grid">
+      <div class="metric"><strong>1,284</strong><span>trips booked (+18% YoY)</span></div>
+      <div class="metric accent"><strong>€3.9M</strong><span>gross revenue</span></div>
+      <div class="metric"><strong>4.7</strong><span>avg traveler rating</span></div>
+      <div class="metric"><strong>31%</strong><span>contribution margin</span></div>
+    </div>
+
+    <!-- Callout -->
+    <div class="callout">
+      <span class="callout-title">Margin watch</span>
+      <p>Long-haul air costs rose 9% in the quarter. Re-pricing the affected itineraries protects roughly €140K of contribution before the September departures.</p>
+    </div>
+
+    <p class="kicker">Detail</p>
+    <h2 id="detail">Brand breakdown</h2>
+
+    <!-- Data table -->
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th>Lead market</th>
+            <th class="num">Trips</th>
+            <th>Trend</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Viventura</td>
+            <td>Germany</td>
+            <td class="num">512</td>
+            <td><span class="badge success">On track</span></td>
+          </tr>
+          <tr>
+            <td>Aventura do Brasil</td>
+            <td>Brazil</td>
+            <td class="num">388</td>
+            <td><span class="badge warn">Watch</span></td>
+          </tr>
+          <tr>
+            <td>Galapagos PRO</td>
+            <td>USA</td>
+            <td class="num">221</td>
+            <td><span class="badge neutral">Stable</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Cards -->
+    <div class="card-grid">
+      <div class="card">
+        <h3>Demand</h3>
+        <p>Search-to-book improved as itinerary pages loaded the new pricing module.</p>
+      </div>
+      <div class="card">
+        <h3>Service</h3>
+        <p>Response times on traveler messages dropped below four hours for the first time.</p>
+      </div>
+      <div class="card">
+        <h3>Supply</h3>
+        <p>Two new local partners in Peru added capacity for the high season window.</p>
+      </div>
+    </div>
+
+    <p class="kicker">Recommendation</p>
+    <h2 id="next">What to do next</h2>
+
+    <!-- Numbered steps -->
+    <ol class="steps">
+      <li><strong>Re-price long-haul itineraries</strong>Apply the updated air-cost assumptions before the September departures.</li>
+      <li><strong>Lock partner capacity</strong>Confirm the Peru allocations now to avoid peak-season shortfalls.</li>
+      <li><strong>Ship the satisfaction follow-up</strong>Automate the post-trip survey so ratings keep their upward trend.</li>
+    </ol>
+
+    <!-- Highlight panel -->
+    <div class="highlight">
+      <p><strong>Bottom line:</strong> the quarter beat plan on volume and satisfaction; defending margin on long-haul is the one move that protects the year.</p>
+    </div>
+
+    <!-- ========================= FOOTER ========================= -->
+    <footer class="report-footer">
+      <span>Ventura Travel — Internal report. Confidential. Generated 5 June 2026.</span>
+      <img class="footer-logo" src="assets/ventura-logo.png" alt="Ventura Travel">
+    </footer>
+
+  </article>
+</body>
+</html>

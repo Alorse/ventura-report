@@ -1,0 +1,564 @@
+/* =====================================================================
+   Ventura Travel — Report Stylesheet
+   Faithful encoding of the "team-system" design system
+   (p.venturatravel.org/team-system). Tokens measured from the live page.
+   Fonts: Cormorant Garamond (display) + Inter (body), loaded from Google
+   Fonts in the template; web-safe fallbacks (Georgia / system) included.
+   ===================================================================== */
+
+:root {
+  /* --- Core palette (measured hex) --- */
+  --ink:          #0b2330; /* primary text / deep teal-charcoal */
+  --muted:        #5c7480; /* secondary text */
+  --line:         #dcd2bd; /* warm sand borders / rules */
+  --paper:        #fbf8f2; /* page background (warm cream) */
+  --white:        #ffffff;
+  --cream:        #f4efe6; /* alt section background */
+  --sand:         #ece5d6; /* deeper cream */
+
+  --teal:         #0e3a4e; /* brand primary */
+  --teal-dark:    #15445a;
+  --teal-mid:     #2a6e8f; /* accent / links */
+  --teal-light:   #bbd2d9;
+  --sage:         #8fa89a; /* secondary accent */
+  --terracotta:   #c97b5a; /* warm accent / CTAs / numerals */
+
+  /* --- Semantic (derived on-brand; success/info use sage+teal) --- */
+  --success:      #4f7a63;
+  --success-bg:   #e7efe8;
+  --warn:         #b07b2e;
+  --warn-bg:      #f6ecd8;
+  --error:        #b1503a;
+  --error-bg:     #f6e3dc;
+  --info:         var(--teal-mid);
+  --info-bg:      #e4eef2;
+
+  /* --- Typography --- */
+  --font-display: "Cormorant Garamond", "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-body:    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+  /* --- Radius / shadow (measured) --- */
+  --radius:       8px;
+  --radius-pill:  999px;
+  --shadow:       0 22px 70px rgba(14, 58, 78, .16);
+  --shadow-card:  0 10px 34px rgba(24, 52, 47, .06);
+  --shadow-soft:  0 14px 42px rgba(24, 52, 47, .08);
+
+  /* --- Content measure (matches the live .wrap: min(1160px, ...)) --- */
+  --content:      min(1080px, calc(100% - 48px));
+  --nav-h:        64px;
+}
+
+/* --------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: var(--teal-mid); }
+
+/* Layout shell --------------------------------------------------------- */
+.report {
+  width: var(--content);
+  margin: 56px auto 0;
+  padding: 0 0 96px;
+}
+
+/* ===================================================================== */
+/* TOP NAVIGATION (sticky topbar, matches the live .topbar)              */
+/* ===================================================================== */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid rgba(220, 210, 189, .9);
+  background: rgba(251, 248, 242, .94);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+.topbar .nav {
+  width: var(--content);
+  margin: 0 auto;
+  min-height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-weight: 800;
+  color: var(--teal);
+}
+.brand .logo-img {
+  display: block;
+  width: 132px;
+  height: auto;
+}
+.brand-divider {
+  width: 1px;
+  height: 26px;
+  background: var(--line);
+  display: inline-block;
+}
+.brand-system {
+  font-size: 13px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.navlinks {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.navlinks a { text-decoration: none; color: inherit; }
+.navlinks a:hover { color: var(--ink); }
+@media (max-width: 820px) {
+  .navlinks { display: none; }
+}
+
+/* ===================================================================== */
+/* COVER / TITLE BLOCK                                                    */
+/* ===================================================================== */
+.cover {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: var(--teal);
+  color: var(--white);
+}
+.cover::before {
+  /* full-bleed hero treatment: teal gradient wash over a travel photo,
+     mirroring the live .hero. The teal base shows if the image is blocked. */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(11,35,48,.95) 0%, rgba(14,58,78,.80) 46%, rgba(14,58,78,.34) 100%),
+    url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1800&q=82");
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+}
+.cover-inner {
+  position: relative;
+  width: var(--content);
+  margin: 0 auto;
+  padding: 88px 0 84px;
+}
+.cover-inner > * { position: relative; }
+
+.cover-logo {
+  width: 188px;
+  height: auto;
+  display: block;
+  margin: 0 0 34px;
+  /* render the dark brand logo in white to sit on teal */
+  filter: brightness(0) invert(1) drop-shadow(0 14px 26px rgba(0,0,0,.24));
+}
+
+.cover .eyebrow {
+  color: var(--line);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+
+.cover h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(44px, 6vw, 84px);
+  line-height: .96;
+  letter-spacing: 0;
+  color: var(--white);          /* keep the title readable on the teal hero */
+  margin: 0 0 22px;
+  max-width: 16ch;
+}
+
+.cover .subtitle {
+  max-width: 60ch;
+  color: #e7f2ee;
+  font-size: clamp(17px, 2vw, 21px);
+  line-height: 1.45;
+  margin: 0 0 30px;
+}
+
+.cover-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 40px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(255,255,255,.22);
+}
+.cover-meta .meta-item { line-height: 1.2; }
+.cover-meta .meta-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin-bottom: 5px;
+}
+.cover-meta .meta-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+/* ===================================================================== */
+/* HEADINGS & TEXT                                                        */
+/* ===================================================================== */
+/* Body headings inherit --ink from <body>; the cover h1 sets its own white
+   above. Do NOT add a blanket `h1{color:--ink}` here — a direct rule would
+   override the cover's inherited white and make the hero title disappear. */
+.report h2, .report h3, .report h4 { color: var(--ink); }
+
+.report h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(30px, 4vw, 50px);
+  line-height: 1.02;
+  letter-spacing: 0;
+  margin: 56px 0 8px;
+}
+
+.report h3 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.3;
+  margin: 34px 0 10px;
+}
+
+.report h4 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: .01em;
+  margin: 24px 0 8px;
+}
+
+.report p { margin: 0 0 16px; }
+.report .lead {
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.5;
+  margin: 0 0 8px;
+}
+.report ul, .report ol { margin: 0 0 16px; padding-left: 22px; }
+.report li { margin: 0 0 7px; }
+.report strong { font-weight: 700; }
+.report small, .caption { font-size: 13px; color: var(--muted); }
+
+/* Section divider: warm rule with an eyebrow kicker */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--teal-mid);
+  margin: 56px 0 0;
+}
+.kicker::before {
+  content: "";
+  width: 26px; height: 2px;
+  background: var(--terracotta);
+}
+.kicker + h2 { margin-top: 6px; }
+
+.rule {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 40px 0;
+}
+
+/* ===================================================================== */
+/* CARDS                                                                 */
+/* ===================================================================== */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+}
+.card h3 { margin: 0 0 10px; font-size: 20px; }
+.card p:last-child { margin-bottom: 0; }
+.card p { color: var(--muted); }
+
+/* Stat / metric cards */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 24px 0;
+}
+.metric {
+  background: var(--white);
+  padding: 22px 20px;
+}
+.metric strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--teal);
+}
+.metric.accent strong { color: var(--terracotta); }
+.metric span {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* ===================================================================== */
+/* BADGES / PILLS                                                        */
+/* ===================================================================== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 24px;
+  border-radius: var(--radius-pill);
+  padding: 2px 11px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--teal);
+  background: rgba(143, 168, 154, .22);
+  vertical-align: middle;
+}
+.badge.teal      { color: var(--teal);       background: rgba(42,110,143,.16); }
+.badge.terracotta{ color: #8a4427;           background: rgba(201,123,90,.20); }
+.badge.success   { color: var(--success);    background: var(--success-bg); }
+.badge.warn      { color: var(--warn);        background: var(--warn-bg); }
+.badge.error     { color: var(--error);       background: var(--error-bg); }
+.badge.neutral   { color: var(--muted);       background: var(--sand); }
+
+/* ===================================================================== */
+/* TABLES                                                                */
+/* ===================================================================== */
+.table-wrap {
+  margin: 24px 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  background: var(--white);
+}
+thead th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--teal);
+  background: var(--cream);
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+tbody td {
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  vertical-align: top;
+}
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:nth-child(even) td { background: rgba(244,239,230,.45); }
+table td.num, table th.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ===================================================================== */
+/* CALLOUTS / ALERTS                                                     */
+/* ===================================================================== */
+.callout {
+  position: relative;
+  margin: 24px 0;
+  padding: 18px 22px 18px 22px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--teal-mid);
+  background: var(--info-bg);
+  color: var(--ink);
+}
+.callout .callout-title {
+  display: block;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: .01em;
+  margin-bottom: 5px;
+}
+.callout p:last-child { margin-bottom: 0; }
+.callout p { color: var(--ink); }
+
+.callout.success { border-left-color: var(--success); background: var(--success-bg); }
+.callout.warn    { border-left-color: var(--warn);    background: var(--warn-bg); }
+.callout.error   { border-left-color: var(--error);   background: var(--error-bg); }
+.callout.note    { border-left-color: var(--terracotta); background: var(--cream); }
+
+/* Quote / highlight panel (matches "you are winning when" treatment) */
+.highlight {
+  margin: 28px 0;
+  padding: 26px 30px;
+  border-radius: var(--radius);
+  background: var(--teal);
+  color: #e7f2ee;
+  box-shadow: var(--shadow-card);
+}
+.highlight strong { color: var(--white); }
+.highlight p:last-child { margin-bottom: 0; }
+
+/* ===================================================================== */
+/* NUMBERED STEPS                                                        */
+/* ===================================================================== */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+}
+.steps li {
+  position: relative;
+  padding-left: 54px;
+  min-height: 38px;
+  margin: 0 0 18px;
+  color: var(--ink);
+}
+.steps li::before {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute;
+  left: 0; top: -2px;
+  width: 34px; height: 34px;
+  border-radius: var(--radius);
+  display: grid;
+  place-items: center;
+  background: var(--terracotta);
+  color: var(--white);
+  font-weight: 900;
+  font-size: 15px;
+}
+.steps li strong { display: block; margin-bottom: 2px; }
+
+/* ===================================================================== */
+/* CODE / MONO                                                           */
+/* ===================================================================== */
+code {
+  font-family: var(--font-mono);
+  font-size: .88em;
+  background: var(--sand);
+  color: var(--teal-dark);
+  padding: .12em .42em;
+  border-radius: 5px;
+}
+pre {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.7;
+  color: #dcebe7;
+  background: var(--teal);
+  border: 1px solid var(--teal-dark);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  overflow: auto;
+  margin: 24px 0;
+}
+pre code { background: none; color: inherit; padding: 0; }
+
+/* ===================================================================== */
+/* FOOTER                                                                */
+/* ===================================================================== */
+.report-footer {
+  margin-top: 72px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.report-footer .footer-logo { width: 104px; height: auto; opacity: .85; }
+
+/* ===================================================================== */
+/* PRINT — A4 friendly                                                   */
+/* ===================================================================== */
+@page { size: A4; margin: 16mm 14mm; }
+
+@media print {
+  :root { --shadow: none; --shadow-card: none; --shadow-soft: none; }
+  body { background: var(--white); font-size: 11pt; }
+  .topbar { display: none; }
+  .report { width: 100%; margin: 0; padding: 0; }
+
+  a { color: var(--ink); text-decoration: none; }
+
+  .cover {
+    box-shadow: none;
+    margin: 0 0 28px;
+    border-radius: 6px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  /* drop the photo for print — keep a clean teal block */
+  .cover::before { background: var(--teal); }
+  .cover-inner { width: 100%; padding: 30px 28px; }
+  .cover, .highlight, pre, thead th, .steps li::before,
+  .callout, .metric-grid, .card, .badge {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .report h2 { font-size: 22pt; margin-top: 28px; }
+  .report h3 { font-size: 14pt; }
+
+  /* keep blocks together across page breaks */
+  .card, .callout, .highlight, .table-wrap, .metric, pre, figure { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+
+  .page-break { break-before: page; }
+  .no-print { display: none !important; }
+}

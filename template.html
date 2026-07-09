@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}} — Ventura Travel</title>
+  <meta name="description" content="{{SUBTITLE}}">
+
+  <!-- Favicon: Ventura mark (teal + terracotta), inline so the report is portable -->
+  <link rel="icon" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"%3E%3Crect width="64" height="64" rx="12" fill="%230E3A4E"/%3E%3Cpath d="M14 18h10l8 24 8-24h10L37 50H27L14 18z" fill="%23fff"/%3E%3Cpath d="M42 18h8l-8 20h-8l8-20z" fill="%23C97B5A"/%3E%3C/svg%3E'>
+
+  <!--
+    Fonts: the live team-system page loads NO webfont — its display stack
+    falls back to Georgia and its body to the system sans. We match that
+    exactly (so titles look identical to the reference) by NOT loading any
+    webfont here. The CSS font stacks already degrade to Georgia / system.
+  -->
+
+  <!--
+    CSS. The default deliverable is a SINGLE self-contained .html file
+    (for hostmyclaudehtml.com et al.): run build.js to inline this stylesheet
+    into a <style> tag and turn the logo into a base64 data URI. Nothing
+    local remains — the only cloud asset is the hero photo (by design).
+  -->
+  <link rel="stylesheet" href="assets/ventura-report.css">
+</head>
+<body>
+
+  <!-- ========================= TOP NAV ========================= -->
+  <header class="topbar">
+    <div class="nav">
+      <div class="brand">
+        <img class="logo-img" src="assets/ventura-logo.png" alt="Ventura Travel">
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span class="brand-system">{{NAV_LABEL}}</span>
+      </div>
+      <nav class="navlinks" aria-label="Report sections">
+        <a href="#overview">{{NAV_1}}</a>
+        <a href="#detail">{{NAV_2}}</a>
+        <a href="#next">{{NAV_3}}</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========================= COVER (full-bleed hero) ========================= -->
+  <header class="cover">
+    <div class="cover-inner">
+      <img class="cover-logo" src="assets/ventura-logo.png" alt="Ventura Travel">
+      <p class="eyebrow">{{EYEBROW}}</p>
+      <h1>{{TITLE}}</h1>
+      <p class="subtitle">{{SUBTITLE}}</p>
+
+      <div class="cover-meta">
+        <div class="meta-item">
+          <span class="meta-label">Date</span>
+          <span class="meta-value">{{DATE}}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Prepared by</span>
+          <span class="meta-value">{{AUTHOR}}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Audience</span>
+          <span class="meta-value">{{AUDIENCE}}</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <article class="report">
+
+    <!-- ========================= BODY ========================= -->
+    <!-- Replace everything below with the report content, reusing the
+         component patterns shown here. {{CONTENT}} -->
+
+    <p class="kicker">Overview</p>
+    <h2 id="overview">{{SECTION_TITLE}}</h2>
+    <p class="lead">{{SECTION_LEAD}}</p>
+    <p>{{PARAGRAPH}}</p>
+
+    <!-- Headline metrics -->
+    <div class="metric-grid">
+      <div class="metric"><strong>{{METRIC_1}}</strong><span>{{METRIC_1_LABEL}}</span></div>
+      <div class="metric accent"><strong>{{METRIC_2}}</strong><span>{{METRIC_2_LABEL}}</span></div>
+      <div class="metric"><strong>{{METRIC_3}}</strong><span>{{METRIC_3_LABEL}}</span></div>
+      <div class="metric"><strong>{{METRIC_4}}</strong><span>{{METRIC_4_LABEL}}</span></div>
+    </div>
+
+    <!-- Callout -->
+    <div class="callout">
+      <span class="callout-title">{{CALLOUT_TITLE}}</span>
+      <p>{{CALLOUT_BODY}}</p>
+    </div>
+
+    <p class="kicker">Detail</p>
+    <h2 id="detail">{{SECTION_2_TITLE}}</h2>
+
+    <!-- Data table -->
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>{{COL_1}}</th>
+            <th>{{COL_2}}</th>
+            <th class="num">{{COL_3}}</th>
+            <th>{{COL_4}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{R1C1}}</td>
+            <td>{{R1C2}}</td>
+            <td class="num">{{R1C3}}</td>
+            <td><span class="badge success">{{R1C4}}</span></td>
+          </tr>
+          <tr>
+            <td>{{R2C1}}</td>
+            <td>{{R2C2}}</td>
+            <td class="num">{{R2C3}}</td>
+            <td><span class="badge warn">{{R2C4}}</span></td>
+          </tr>
+          <tr>
+            <td>{{R3C1}}</td>
+            <td>{{R3C2}}</td>
+            <td class="num">{{R3C3}}</td>
+            <td><span class="badge neutral">{{R3C4}}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Cards -->
+    <div class="card-grid">
+      <div class="card">
+        <h3>{{CARD_1_TITLE}}</h3>
+        <p>{{CARD_1_BODY}}</p>
+      </div>
+      <div class="card">
+        <h3>{{CARD_2_TITLE}}</h3>
+        <p>{{CARD_2_BODY}}</p>
+      </div>
+      <div class="card">
+        <h3>{{CARD_3_TITLE}}</h3>
+        <p>{{CARD_3_BODY}}</p>
+      </div>
+    </div>
+
+    <p class="kicker">Recommendation</p>
+    <h2 id="next">{{SECTION_3_TITLE}}</h2>
+
+    <!-- Numbered steps -->
+    <ol class="steps">
+      <li><strong>{{STEP_1_TITLE}}</strong>{{STEP_1_BODY}}</li>
+      <li><strong>{{STEP_2_TITLE}}</strong>{{STEP_2_BODY}}</li>
+      <li><strong>{{STEP_3_TITLE}}</strong>{{STEP_3_BODY}}</li>
+    </ol>
+
+    <!-- Highlight panel -->
+    <div class="highlight">
+      <p><strong>{{HIGHLIGHT_TITLE}}</strong> {{HIGHLIGHT_BODY}}</p>
+    </div>
+
+    <!-- ========================= FOOTER ========================= -->
+    <footer class="report-footer">
+      <span>{{FOOTER_TEXT}}</span>
+      <img class="footer-logo" src="assets/ventura-logo.png" alt="Ventura Travel">
+    </footer>
+
+  </article>
+</body>
+</html>
